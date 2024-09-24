@@ -34,8 +34,28 @@ function criarCoracao() {
     coracao.style.fontSize = '20px'; // Tamanho pequeno
     coracao.style.position = 'absolute'; // Para posicionar aleatoriamente
     coracao.style.left = Math.random() * window.innerWidth + 'px'; // Posição aleatória em X
-    coracao.style.top = Math.random() * window.innerHeight + 'px'; // Posição aleatória em Y
+    coracao.style.top = Math.random() * window.innerHeight + 'px'; // Posição inicial aleatória em Y
     document.body.appendChild(coracao);
+
+    // Função para animar o coração subindo e descendo
+    function animarCoracao() {
+        // Subindo
+        coracao.style.transition = 'top 1s ease-in-out';
+        coracao.style.top = (parseFloat(coracao.style.top) - 50) + 'px'; // Move 50px para cima
+        
+        setTimeout(() => {
+            // Descendo
+            coracao.style.top = (parseFloat(coracao.style.top) + 50) + 'px'; // Move 50px para baixo
+        }, 1000);
+
+        setTimeout(() => {
+            // Reiniciar animação
+            coracao.style.top = Math.random() * window.innerHeight + 'px'; // Nova posição aleatória em Y
+            animarCoracao(); // Chama a função novamente para continuar o efeito
+        }, 2000);
+    }
+
+    animarCoracao(); // Inicia a animação
 }
 
 // Criar 200 corações roxos
