@@ -1,1 +1,2 @@
 # JS
+Rainy Nhaiany Duarte
